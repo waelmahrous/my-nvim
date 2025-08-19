@@ -4,7 +4,7 @@ return {
     "folke/zen-mode.nvim",
     opts = {
       window = {
-        backdrop = 0.97,
+        backdrop = 1,
         width = 140,
         options = {},
       },
