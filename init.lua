@@ -33,3 +33,4 @@ vim.opt.guicursor = {
 
 require "lazy_setup"
 require "polish"
+require "move-lines"
