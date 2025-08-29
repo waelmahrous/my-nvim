@@ -91,6 +91,11 @@ return {
             return client.supports_method "textDocument/semanticTokens/full" and vim.lsp.semantic_tokens ~= nil
           end,
         },
+        ["<Leader>lf"] = {
+      function() vim.lsp.buf.format { async = true } end,
+      desc = "Format buffet",
+      cond = "textDocument/formatting",
+    },
       },
     },
     -- A custom `on_attach` function to be run after the default `on_attach` function

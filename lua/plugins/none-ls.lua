@@ -1,24 +1,34 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
--- Customize None-ls sources
-
+-- lua/plugins/none-ls.lua
 ---@type LazySpec
 return {
-  "nvimtools/none-ls.nvim",
-  opts = function(_, opts)
-    -- opts variable is the default configuration table for the setup function call
-    -- local null_ls = require "null-ls"
+  -- Bridge external tools into LSP
+  {
+    "nvimtools/none-ls.nvim",
+    opts = function()
+      return { sources = {} } -- keep empty; mason-null-ls will register tools
+    end,
+  },
 
-    -- Check supported formatters and linters
-    -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/formatting
-    -- https://github.com/nvimtools/none-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
-
-    -- Only insert new sources, do not replace the existing ones
-    -- (If you wish to replace, use `opts.sources = {}` instead of the `list_insert_unique` function)
-    opts.sources = require("astrocore").list_insert_unique(opts.sources, {
-      -- Set a formatter
-      -- null_ls.builtins.formatting.stylua,
-      -- null_ls.builtins.formatting.prettier,
-    })
-  end,
+  -- Auto-register Mason tools with none-ls
+  {
+    "jay-babu/mason-null-ls.nvim",
+    dependencies = { "williamboman/mason.nvim", "nvimtools/none-ls.nvim" },
+    opts = {
+      ensure_installed = {
+        -- e.g. "stylua", "clang-format", "black", "prettier"
+      },
+      automatic_installation = true,
+      handlers = {
+        -- default handler applies to all sources
+        function(source_name, methods)
+          require("mason-null-ls").default_setup(source_name, methods)
+        end,
+        -- You can override specific sources like this:
+        -- stylua = function(source_name, methods)
+        --   local nls = require("null-ls")
+        --   require("mason-null-ls").default_setup(source_name, methods)
+        -- end,
+      },
+    },
+  },
 }
