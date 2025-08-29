@@ -1,17 +1,19 @@
 ---@type LazySpec
-
-local uname = os.getenv "USER"
-local datetime = os.date "%Y-%m-%d %H:%M:%S"
+local uname = vim.env.USER or os.getenv "USER" or "user"
 
 return {
   {
     "folke/snacks.nvim",
     opts = {
       dashboard = {
-        -- ignore the preset and define sections yourself
+
+        -- Define sections here
         sections = {
           { section = "header" },
+          { header = "/* " .. uname .. " */", animate = true },
         },
+
+        -- Customize the sections here
         preset = {
           header = table.concat({
 
@@ -42,11 +44,9 @@ return {
             '                                ."!:cwwwIcowI+~".                               ',
             "                                                                                ",
             "",
-            "/* " .. uname .. " */",
           }, "\n"),
         },
       },
     },
   },
-  { "goolord/alpha-nvim", enabled = false },
 }
