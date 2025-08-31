@@ -5,6 +5,11 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      lazygit = {
+        configure = false, -- disables snack's theme integration
+        theme = nil, -- ensures no extra theming is applied
+      },
+
       dashboard = {
 
         -- Define sections here
