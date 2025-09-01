@@ -1,6 +1,7 @@
 -- ~/.config/nvim/lua/plugins/toggleterm-lazygit.lua
 
 return {
+  -- Lazygit
   {
     "jesseduffield/lazygit",
     config = function(_)
@@ -20,5 +21,18 @@ return {
         })
       end, { desc = "LazyGit yo" })
     end,
+  },
+  -- Gitsigns
+  {
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      signs = {
+        add = { text = "▌" }, -- full block
+        change = { text = "▌" }, -- dense shaded block
+        delete = { text = "▌" }, -- low block (bottom line)
+        topdelete = { text = "▀" }, -- high block (top line)
+        changedelete = { text = "▌" }, -- medium shaded block
+      },
+    },
   },
 }
