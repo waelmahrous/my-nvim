@@ -10,15 +10,29 @@ return {
       vim.opt.termguicolors = true
 
       local function set_tree_highlights()
-        vim.api.nvim_set_hl(0, "NvimTreeNormal",      { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeNormalNC",    { link = "Normal" })
+        vim.api.nvim_set_hl(0, "NvimTreeNormal", { link = "Normal" })
+        vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { link = "Normal" })
         vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { link = "Normal" })
         vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeCursorLine",  { link = "Substitute" })
+        vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { link = "Substitute" })
       end
 
-      require("nvim-tree").setup({
+      require("nvim-tree").setup {
         view = { width = 40 },
+
+        -- show git status integration
+        git = {
+          enable = true, -- show git icons/status
+          ignore = false, -- <--- show files/folders that are gitignored
+          timeout = 400,
+        },
+
+        -- file filters
+        filters = {
+          dotfiles = false, -- false => show dotfiles
+          custom = {}, -- patterns to hide (e.g. {"node_modules"})
+          exclude = {}, -- patterns to explicitly *not* hide
+        },
 
         update_focused_file = {
           enable = true,
@@ -26,13 +40,13 @@ return {
         },
 
         on_attach = function(bufnr)
-          local api = require("nvim-tree.api")
+          local api = require "nvim-tree.api"
           -- keep default mappings
           api.config.mappings.default_on_attach(bufnr)
           -- then apply highlights
           set_tree_highlights()
         end,
-      })
+      }
 
       -- apply once at startup
       set_tree_highlights()

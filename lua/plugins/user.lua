@@ -1,6 +1,21 @@
 ---@type LazySpec
 local uname = vim.env.USER or os.getenv "USER" or "user"
 
+local fb = require('telescope.builtin')
+
+vim.keymap.set('n', '<leader>ff', function()
+  fb.find_files({
+    -- explicitly use ripgrep and tell it to show hidden files and ignore gitignore
+    find_command = {
+      'rg',
+      '--files',
+      '--hidden',
+      '--no-ignore-vcs',  -- include files ignored by git
+      '--follow'          -- follow symlinks (optional)
+    },
+  })
+end, { desc = "Find files (rg: include gitignored + hidden)" })
+
 return {
   {
     "folke/snacks.nvim",
