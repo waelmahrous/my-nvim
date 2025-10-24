@@ -15,14 +15,23 @@ return {
             terminalColors = true, -- define vim.g.terminal_color_{0,17}
             colors = { -- add/modify theme and palette colors
                 palette = {},
-                theme = { wave = {}, lotus = {}, dragon = {}, all = {
-                    ui = {
-                        bg_gutter = "none"
-                    }
-                } },
+                theme = {
+                    wave = {},
+                    lotus = {},
+                    dragon = {},
+                    all = {
+                        ui = {
+                            bg_gutter = "none",
+                        },
+                    },
+                },
             },
             overrides = function(colors) -- add/modify highlights
-                return {}
+                return {
+                    LspReferenceText = { bg = colors.palette.waveBlue1, underline = false },
+                    LspReferenceRead = { bg = colors.palette.waveBlue1, underline = false },
+                    LspReferenceWrite = { bg = colors.palette.waveBlue1, underline = false },
+                }
             end,
             theme = "wave", -- Load "wave" theme
             background = { -- map the value of 'background' option to a theme
