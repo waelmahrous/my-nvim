@@ -9,8 +9,8 @@ return {
         -- Use snacks for window (thnx for the dim)
         Snacks.terminal.open("lazygit", {
           win = {
-            width = 0.85,
-            height = 0.85,
+            width = 0.98,
+            height = 0.95,
             border = "solid",
             position = "float",
             wo = {
