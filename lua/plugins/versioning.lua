@@ -6,8 +6,7 @@ return {
     "jesseduffield/lazygit",
     config = function(_)
       vim.keymap.set("n", "<leader>gg", function()
-        -- Use snacks for window (thnx for the dim)
-        Snacks.terminal.open("lazygit", {
+        Snacks.terminal.open("lazygit --screen-mode=half", {
           win = {
             width = 0.98,
             height = 0.95,
