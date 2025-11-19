@@ -6,10 +6,10 @@ return {
     "jesseduffield/lazygit",
     config = function(_)
       vim.keymap.set("n", "<leader>gg", function()
-        Snacks.terminal.open("lazygit --screen-mode=half", {
+        Snacks.terminal.open("lazygit", {
           win = {
-            width = 0.98,
-            height = 0.95,
+            width = 0,
+            height = 0,
             border = "solid",
             position = "float",
             wo = {
