@@ -1,59 +1,59 @@
 -- ~/.config/nvim/lua/plugins/nvim-tree.lua
 
 return {
-  {
-    "nvim-tree/nvim-tree.lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
-      vim.opt.termguicolors = true
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            vim.opt.termguicolors = true
 
-      local function set_tree_highlights()
-        vim.api.nvim_set_hl(0, "NvimTreeNormal", { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "Normal" })
-        vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { link = "Substitute" })
-      end
+            local function set_tree_highlights()
+                vim.api.nvim_set_hl(0, "NvimTreeNormal", { link = "Normal" })
+                vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { link = "Normal" })
+                vim.api.nvim_set_hl(0, "NvimTreeNormalFloat", { link = "Normal" })
+                vim.api.nvim_set_hl(0, "NvimTreeEndOfBuffer", { link = "Normal" })
+                vim.api.nvim_set_hl(0, "NvimTreeCursorLine", { link = "Substitute" })
+            end
 
-      require("nvim-tree").setup {
-        view = { width = 40 },
+            require("nvim-tree").setup {
+                view = { width = 40 },
 
-        -- show git status integration
-        git = {
-          enable = true, -- show git icons/status
-          ignore = false, -- <--- show files/folders that are gitignored
-          timeout = 400,
-        },
+                -- show git status integration
+                git = {
+                    enable = true, -- show git icons/status
+                    ignore = false, -- <--- show files/folders that are gitignored
+                    timeout = 400,
+                },
 
-        -- file filters
-        filters = {
-          dotfiles = false, -- false => show dotfiles
-          custom = {}, -- patterns to hide (e.g. {"node_modules"})
-          exclude = {}, -- patterns to explicitly *not* hide
-        },
+                -- file filters
+                filters = {
+                    dotfiles = false, -- false => show dotfiles
+                    custom = {}, -- patterns to hide (e.g. {"node_modules"})
+                    exclude = {}, -- patterns to explicitly *not* hide
+                },
 
-        update_focused_file = {
-          enable = true,
-          update_cwd = true,
-        },
+                update_focused_file = {
+                    enable = true,
+                    update_cwd = true,
+                },
 
-        on_attach = function(bufnr)
-          local api = require "nvim-tree.api"
-          -- keep default mappings
-          api.config.mappings.default_on_attach(bufnr)
-          -- then apply highlights
-          set_tree_highlights()
+                on_attach = function(bufnr)
+                    local api = require "nvim-tree.api"
+                    -- keep default mappings
+                    api.config.mappings.default_on_attach(bufnr)
+                    -- then apply highlights
+                    set_tree_highlights()
+                end,
+            }
+
+            -- apply once at startup
+            set_tree_highlights()
         end,
-      }
 
-      -- apply once at startup
-      set_tree_highlights()
-    end,
-
-    keys = {
-      { "<leader>o", "<cmd>NvimTreeToggle<cr>", desc = "Open nvimtree" },
+        keys = {
+            { "<leader>o", "<cmd>NvimTreeToggle<cr>", desc = "Open nvimtree" },
+        },
     },
-  },
 }

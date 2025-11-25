@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/plugins/neo-tree.lua
 return {
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
-  },
+    {
+        "nvim-neo-tree/neo-tree.nvim",
+        enabled = false,
+    },
 }

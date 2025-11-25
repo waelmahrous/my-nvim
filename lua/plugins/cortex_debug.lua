@@ -4,10 +4,26 @@ return {
     {
         "mfussenegger/nvim-dap",
         keys = {
-            { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "DAP: Toggle Breakpoint" },
-            { "<leader>dc", function() require("dap").continue() end, desc = "DAP: Continue" },
-            { "<leader>dC", function() require("dap").run_to_cursor() end, desc = "DAP: Run to Cursor" },
-            { "<leader>dT", function() require("dap").terminate() end, desc = "DAP: Terminate" },
+            {
+                "<leader>db",
+                function() require("dap").toggle_breakpoint() end,
+                desc = "DAP: Toggle Breakpoint",
+            },
+            {
+                "<leader>dc",
+                function() require("dap").continue() end,
+                desc = "DAP: Continue",
+            },
+            {
+                "<leader>dC",
+                function() require("dap").run_to_cursor() end,
+                desc = "DAP: Run to Cursor",
+            },
+            {
+                "<leader>dT",
+                function() require("dap").terminate() end,
+                desc = "DAP: Terminate",
+            },
         },
     },
 
@@ -19,7 +35,11 @@ return {
         },
         opts = {},
         keys = {
-            { "<leader>du", function() require("dapui").toggle {} end, desc = "DAP: Toggle UI" },
+            {
+                "<leader>du",
+                function() require("dapui").toggle {} end,
+                desc = "DAP: Toggle UI",
+            },
         },
     },
     {
